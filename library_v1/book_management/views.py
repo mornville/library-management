@@ -8,6 +8,10 @@ from loguru import logger
 Scenario not handled: Ordering in the queue of members"""
 
 
+""""
+FINE - Book not returned for more than 7 days
+"""
+
 def return_book(request):
     """
     View to return  a book
@@ -71,7 +75,7 @@ def return_book(request):
             )
 
         return HttpResponse(
-            {f"Return succesful with giving book to {member_to_be_assigned=}"},
+            {f"Return succesful with giving book to {requesting_member=}"},
             status=200,
         )
 
@@ -141,7 +145,7 @@ def checkout_book(request):
 
             logger.debug(f"Updated queue = {res_queue=}")
             return HttpResponse(
-                {f"Checkout succesful by RESERVATION; {res_queue=}"}, status=200
+                {f"Updating Reservation by RESERVATION; {res_queue=}"}, status=200
             )
     except (Books.DoesNotExist, Members.DoesNotExist):
         return HttpResponse(
